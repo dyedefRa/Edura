@@ -28,7 +28,7 @@ namespace Edura.WebUI
         {
             services.AddRazorPages();
 
-            services.AddDbContext<EduraContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<EduraContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),b=>b.MigrationsAssembly("Edura.WebUI")));
             services.AddTransient<IProductRepository, EfProductRepository
                 >();
         }
@@ -64,6 +64,7 @@ namespace Edura.WebUI
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
 
+            SeedData.EnsurePopulated(app);
       
         }
     }

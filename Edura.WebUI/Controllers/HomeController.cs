@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Edura.Repository.Abstract;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,17 @@ namespace Edura.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        private IProductRepository productRepository;
+
+        public HomeController(IProductRepository _productRepository)
+        {
+            productRepository = _productRepository;
+        }
+
+
         public IActionResult Index()
         {
-            return View();
+            return View(productRepository.Products);
         }
     }
 }
