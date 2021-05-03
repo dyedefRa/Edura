@@ -19,7 +19,7 @@ namespace Edura.WebUI.Controllers
 
         public IActionResult Index()
         {
-            return View(productRepository.Products);
+            return View(productRepository.GetAll());
         }
     }
 }
