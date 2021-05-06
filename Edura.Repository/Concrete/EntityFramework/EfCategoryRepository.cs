@@ -45,6 +45,11 @@ namespace Edura.Repository.Concrete.EntityFramework
             return context.Categories;
         }
 
+        public Category GetByName(string categoryName)
+        {
+            return context.Categories.FirstOrDefault(x => x.Name == categoryName);
+        }
+
         public void Save()
         {
             context.SaveChanges();

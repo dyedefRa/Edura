@@ -40,6 +40,11 @@ namespace Edura.Repository.Concrete.AdoNet
             throw new NotImplementedException();
         }
 
+        public List<Product> GetLast5Products()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Save()
         {
             throw new NotImplementedException();
