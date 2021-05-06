@@ -8,56 +8,25 @@ using System.Text;
 
 namespace Edura.Repository.Concrete.EntityFramework
 {
-    public class EfProductRepository : IProductRepository
+    public class EfProductRepository : EfGenericRepository<Product>, IProductRepository
     {
-        private EduraContext context;
-
-        public EfProductRepository(EduraContext ctx)
+        public EfProductRepository(EduraContext context) : base(context)
         {
-            context = ctx;
+
         }
 
-        public void Add(Product entity)
+        public EduraContext eduraContext
         {
-            context.Products.Add(entity);
-        }
-
-        public void Delete(Product entity)
-        {
-            context.Products.Remove(entity);
-        }
-
-        public void Edit(Product entity)
-        {
-            context.Entry<Product>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-        }
-
-        public IQueryable<Product> Find(Expression<Func<Product, bool>> predicate)
-        {
-            return context.Products.Where(predicate);
-        }
-
-        public Product Get(int id)
-        {
-            return context.Products.FirstOrDefault(x => x.Id == id);
-        }
-
-        public IQueryable<Product> GetAll()
-        {
-            return context.Products;
+            get { return context as EduraContext; }
         }
 
         public List<Product> GetLast5Products()
         {
-            return context.Products
+            return eduraContext
+                .Products
                 .OrderByDescending(x => x.Id)
                 .Take(5)
                 .ToList();
-        }
-
-        public void Save()
-        {
-            context.SaveChanges();
         }
     }
 }
