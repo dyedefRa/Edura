@@ -33,6 +33,7 @@ namespace Edura.WebUI
                 >();
             services.AddTransient<ICategoryRepository, EfCategoryRepository
                >();
+            services.AddTransient<IUnitOfWork, EfUnitOfWork>();
             //services.AddTransient<IProductRepository, AdoProductRepository
             //  >();
         }

@@ -1,4 +1,5 @@
-﻿using Edura.Repository.Abstract;
+﻿using Edura.Entity.Models;
+using Edura.Repository.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,31 @@ namespace Edura.WebUI.Controllers
     {
         private IProductRepository productRepository;
 
-        public HomeController(IProductRepository _productRepository)
+        private IUnitOfWork unitOfWork;
+
+        public HomeController(IUnitOfWork _unitOfWork,IProductRepository _productRepository)
         {
             productRepository = _productRepository;
+            unitOfWork = _unitOfWork;
         }
 
 
         public IActionResult Index()
         {
-            return View(productRepository.GetAll());
+            return View(unitOfWork.Products.GetAll());
+        }
+
+        public IActionResult Create()
+        {
+            var product = new Product()
+            {
+                Name = "test yeni",
+                Price = 1001
+            };
+            unitOfWork.Products.Add(product);
+            unitOfWork.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
