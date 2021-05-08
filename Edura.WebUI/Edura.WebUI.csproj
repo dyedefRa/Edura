@@ -7,6 +7,7 @@
   <ItemGroup>
     <Folder Include="Entity\" />
     <Folder Include="Repository\" />
+    <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
   <ItemGroup>
