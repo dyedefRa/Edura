@@ -9,7 +9,7 @@ namespace Edura.WebUI.Components
 {
     public class FeaturedMenu:ViewComponent
     {
-        private, IProductRepository productRepository;
+        private IProductRepository productRepository;
         public FeaturedMenu(IProductRepository _productRepository)
         {
             productRepository = _productRepository;
