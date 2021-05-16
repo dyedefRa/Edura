@@ -23,18 +23,19 @@ namespace Edura.WebUI.Controllers
 
         public IActionResult Index()
         {
-            return View(unitOfWork.Products.GetAll());
+            var model = unitOfWork.Products.GetAll().Where(x => x.IsApproved && x.isHome).ToList();
+            return View(model);
         }
 
         public IActionResult Create()
         {
-            var product = new Product()
-            {
-                Name = "test yeni",
-                Price = 1001
-            };
-            unitOfWork.Products.Add(product);
-            unitOfWork.SaveChanges();
+            //var product = new Product()
+            //{
+            //    Name = "test yeni",
+            //    Price = 1001
+            //};
+            //unitOfWork.Products.Add(product);
+            //unitOfWork.SaveChanges();
 
             return RedirectToAction("Index");
         }

@@ -18,7 +18,7 @@ namespace Edura.Repository.Concrete.EntityFramework
             context.Database.EnsureCreated();
             if (!context.Products.Any())
             {
-           
+
 
                 var categories = new[]
                 {
@@ -31,10 +31,11 @@ namespace Edura.Repository.Concrete.EntityFramework
 
                 var product = new[]
            {
-                    new Product(){ Name="Camera", Price=1000,Categories=new List<Category>(){categories[0],categories[1]} },
-                     new Product(){ Name="Phone", Price=3000,Categories=new List<Category>(){categories[1],categories[2]} },
-                      new Product(){ Name="HeadPhone", Price=300,Categories = new List<Category>() { categories[0], categories[1] } },
-                       new Product(){ Name="Sofa", Price=500,Categories = new List<Category>() { categories[1], categories[2] } }
+                    new Product(){ isHome=true,IsApproved=true,
+                    Name="Camera", Price=1000,Image="product1.jpg",Categories=new List<Category>(){categories[0],categories[1]} },
+                     new Product(){isHome=true,IsApproved=true, Name="Phone", Price=3000,Image="product2.jpg",Categories=new List<Category>(){categories[1],categories[2]} },
+                      new Product(){isHome=true,IsApproved=true, Name="HeadPhone", Price=300,Image="product3.jpg",Categories = new List<Category>() { categories[0], categories[1] } },
+                       new Product(){isHome=true,IsApproved=true, Name="Sofa", Price=500,Image="product4.jpg",Categories = new List<Category>() { categories[1], categories[2] } }
                 };
 
                 context.Products.AddRange(product);

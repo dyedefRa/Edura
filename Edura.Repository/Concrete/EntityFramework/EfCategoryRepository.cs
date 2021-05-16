@@ -1,4 +1,5 @@
 ﻿using Edura.Entity.Models;
+using Edura.Entity.ViewModels;
 using Edura.Repository.Abstract;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,19 @@ namespace Edura.Repository.Concrete.EntityFramework
         {
             get { return context as EduraContext; }
         }
+
+        public IEnumerable<CategoryModel> GetAllWithProductCount()
+        {
+            //?? i.ProductCategories.Count()
+            return GetAll().Select(x =>
+            new CategoryModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Count = x.Products.Count()
+            });
+        }
+
         public Category GetByName(string categoryName)
         {
             return eduraContext
