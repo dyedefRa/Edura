@@ -24,6 +24,7 @@ namespace Edura.Repository.Concrete.EntityFramework
         public IEnumerable<CategoryModel> GetAllWithProductCount()
         {
             //?? i.ProductCategories.Count()
+
             return GetAll().Select(x =>
             new CategoryModel()
             {
