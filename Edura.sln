@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edura.WebUI", "Edura.WebUI\Edura.WebUI.csproj", "{8680A808-8246-4E2E-950E-555E7BABFA74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Edura.WebUI", "Edura.WebUI\Edura.WebUI.csproj", "{8680A808-8246-4E2E-950E-555E7BABFA74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edura.Repository", "Edura.Repository\Edura.Repository.csproj", "{FFCB51A8-B51A-4925-BC6F-8A8D3AFD8286}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Edura.Repository", "Edura.Repository\Edura.Repository.csproj", "{FFCB51A8-B51A-4925-BC6F-8A8D3AFD8286}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Edura.Entity", "Edura.Entity\Edura.Entity.csproj", "{27847612-40AE-4ABE-BDE0-C5F6DA658671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Edura.Entity", "Edura.Entity\Edura.Entity.csproj", "{27847612-40AE-4ABE-BDE0-C5F6DA658671}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EA0E5FB-1D56-4EEF-9A2E-D6CB440ED84A}"
+	ProjectSection(SolutionItems) = preProject
+		BeniOku.txt = BeniOku.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

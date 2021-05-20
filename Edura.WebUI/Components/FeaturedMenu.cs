@@ -17,7 +17,7 @@ namespace Edura.WebUI.Components
 
         public IViewComponentResult Invoke()
         {
-            return View(productRepository.Find(x => x.isFeatured == true));
+            return View(productRepository.Find(x => x.IsFeatured == true));
         }
     }
 }

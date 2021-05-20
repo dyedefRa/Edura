@@ -23,7 +23,7 @@ namespace Edura.WebUI.Controllers
 
         public IActionResult Index()
         {
-            var model = unitOfWork.Products.GetAll().Where(x => x.IsApproved && x.isHome).ToList();
+            var model = unitOfWork.Products.GetAll().Where(x => x.IsApproved && x.IsHome).ToList();
             return View(model);
         }
 
