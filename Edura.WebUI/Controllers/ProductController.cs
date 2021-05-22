@@ -1,4 +1,6 @@
-﻿using Edura.Repository.Abstract;
+﻿using Edura.Entity.Models;
+using Edura.Entity.ViewModels;
+using Edura.Repository.Abstract;
 using Edura.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -43,7 +45,7 @@ namespace Edura.WebUI.Controllers
             return View(model);
         }
 
-        public IActionResult List(string category,int page=1)
+        public IActionResult List(string category, int page = 1)
         {
             var products = productRepository.GetAll();
             if (!string.IsNullOrEmpty(category))
@@ -52,9 +54,20 @@ namespace Edura.WebUI.Controllers
                     .Include(x => x.Categories)
                     .Where(x => x.Categories.Any(y => y.Name == category));
             }
-
+            var count = products.Count();
             products = products.Skip((page - 1) * pageSize).Take(pageSize);
-            return View(products);
+
+            var pagingInfo = new PagingInfo();
+            pagingInfo.CurrentPage = page;
+            pagingInfo.ItemsPerPage = pageSize;
+            pagingInfo.TotalItems = count;
+
+            var model = new PagingModel<Product>()
+            {
+                RelatedItems = products,
+                PagingInfo = pagingInfo
+            };
+            return View(model);
         }
     }
 }
