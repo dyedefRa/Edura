@@ -3,6 +3,7 @@ using Edura.Repository.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,8 +28,9 @@ namespace Edura.WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
 
-            services.AddDbContext<EduraContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),b=>b.MigrationsAssembly("Edura.WebUI")));
+            services.AddDbContext<EduraContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Edura.WebUI")));
             services.AddTransient<IProductRepository, EfProductRepository
                 >();
             services.AddTransient<ICategoryRepository, EfCategoryRepository
@@ -68,9 +70,15 @@ namespace Edura.WebUI
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
-
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "products",
+                    template: "products/{category?}",
+                    defaults: new { controller = "Product",action="List" });
+            });
             SeedData.EnsurePopulated(app);
-      
+
         }
     }
 }

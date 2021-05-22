@@ -46,17 +46,17 @@
                                 </div>
 
                                 @*<div class="col-xs-4 text-right">
-                                        <form method="get" class="woocommerce-ordering">
-                                            <select class="form-control" name="orderby">
-                                                <option selected="selected" value="menu_order">Default sorting</option>
-                                                <option value="popularity">Sort by popularity</option>
-                                                <option value="rating">Sort by rating</option>
-                                                <option value="date">Newest on top</option>
-                                                <option value="price">Price: low to high</option>
-                                                <option value="price-desc">Price: high to low</option>
-                                            </select>
-                                        </form>
-                                    </div>*@
+                        <form method="get" class="woocommerce-ordering">
+                            <select class="form-control" name="orderby">
+                                <option selected="selected" value="menu_order">Default sorting</option>
+                                <option value="popularity">Sort by popularity</option>
+                                <option value="rating">Sort by rating</option>
+                                <option value="date">Newest on top</option>
+                                <option value="price">Price: low to high</option>
+                                <option value="price-desc">Price: high to low</option>
+                            </select>
+                        </form>
+                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,8 @@
                     @foreach (var product in Model)
                     {
                         @(await Html.PartialAsync("_ProductItems", product))
-                    }
+                   }
+
                 </div>
 
             </div>
