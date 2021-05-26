@@ -46,12 +46,12 @@
                             <div class="col-md-6">
                                 <div id="product-gallery" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
 
-                                    @foreach (var img in Model.Images)
-                                    {
+                                    @*@foreach (var img in Model.Images)
+                                    {*@
                                         <div class="item">
-                                            <img alt="" class="img-responsive" src="/images/products/@img.Name" />
+                                            <img alt="" class="img-responsive" src="/images/products/@Model.Product.Image" />
                                         </div>
-                                    }
+                                    @*}*@
                                 </div>
                             </div>
 

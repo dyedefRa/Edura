@@ -8,11 +8,11 @@
         @foreach (var featuredProduct in Model)
         {
             <div class="media">
-                <a class="media-left" href="#">
+                <a class="media-left" asp-controller="Product" asp-action="Details" asp-route-id="@featuredProduct.Id">
                     <img alt="" class="img-responsive product-thumb" src="/images/products/@featuredProduct.Image">
                 </a>
                 <div class="media-body">
-                    <a href="#" class="product-title">@featuredProduct.Name</a>
+                    <a class="product-title">@featuredProduct.Name</a>
                     <p class="product-price">$@featuredProduct.Price</p>
                 </div>
             </div>

@@ -1,4 +1,6 @@
 ﻿using Edura.Entity.ViewModels;
+using Edura.WebUI.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -8,9 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Edura.WebUI.Helpers
+namespace Edura.WebUI.Infrastructure
 {
-    //Div içinde aktif olacak
     [HtmlTargetElement("div", Attributes = "page-model")]
     public class PageLinkTagHelper : TagHelper
     {
@@ -24,6 +25,7 @@ namespace Edura.WebUI.Helpers
         [ViewContext]
         [HtmlAttributeNotBound]
         public ViewContext ViewContext { get; set; }
+
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }
 
@@ -32,21 +34,24 @@ namespace Edura.WebUI.Helpers
             var urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
 
             var result = new TagBuilder("div");
-            for (int i = 0; i < PageModel.TotalPages(); i++)
+
+            for (int i = 1; i <= PageModel.TotalPages(); i++)
             {
                 var tag = new TagBuilder("a");
-                var urlActionContent = new UrlActionContext()
-                {
-                    Action = PageAction,
-                    Values = new { page = i }
-                };
-                tag.Attributes["href"] = urlHelper.Action(urlActionContent);
+                tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i });
                 tag.InnerHtml.Append(i.ToString());
+
+                if (i == PageModel.CurrentPage)
+                {
+                    tag.AddCssClass("btn btn-success");
+                }
+                else
+                {
+                    tag.AddCssClass("btn btn-warning");
+                }
                 result.InnerHtml.AppendHtml(tag);
             }
-
             output.Content.AppendHtml(result.InnerHtml);
-
         }
     }
 }
