@@ -1,1 +1,5 @@
-ViewComponent .
+ViewComponent . Shared> Components
+---------------------------
+ //cart için session kullandýk.Bunu aktif ettik             app.UseSession();
+            services.AddMemoryCache();
+            services.AddSession();

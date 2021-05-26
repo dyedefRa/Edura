@@ -38,6 +38,11 @@ namespace Edura.WebUI
             services.AddTransient<IUnitOfWork, EfUnitOfWork>();
             //services.AddTransient<IProductRepository, AdoProductRepository
             //  >();
+
+            //cart için session kullandýk.Bunu aktif ettik             app.UseSession();
+
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +61,7 @@ namespace Edura.WebUI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
