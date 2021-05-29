@@ -21,6 +21,8 @@ namespace Edura.WebUI.Controllers
         public IActionResult Index()
         {
             return View(GetCart());
+
+
         }
 
         public IActionResult AddToCart(int productId, int quantity = 1)
