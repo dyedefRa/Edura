@@ -58,6 +58,9 @@ namespace Edura.WebUI.Controllers
         private Cart GetCart()
         {
             return HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+
+
+
         }
     }
 }
